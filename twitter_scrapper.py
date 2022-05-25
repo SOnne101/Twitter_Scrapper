@@ -23,12 +23,15 @@ api = tweepy.API(auth)
 ids = ['Statsmin','JakobEllemann','PiaOlsen', 'sofiecn', 'MaiVilladsen', 'SorenPape', 'MrMesserschmidt', 
         'PernilleVermund', 'AlexVanopslagh', 'SikandaSIDDIQUE', 'FranciskaRosenk', 'IsabellaArendt']
 
+#Number of tweets
+num_tweets = 100
+
 #Get tweet
 
 tweets = []
 
 for id in range(len(ids)):
-    for i in tweepy.Cursor(api.user_timeline, id=ids[id], tweet_mode='extended').items(100):
+    for i in tweepy.Cursor(api.user_timeline, id=ids[id], tweet_mode='extended').items(num_tweets):
         tweets.append(i.full_text)
 
 df = pd.DataFrame({'Tweets':tweets})
